@@ -26,7 +26,7 @@ public class StockServiceImpl implements StockService {
     @Override
     public Stock createStock(StockCreateRequest request) {
         if (stockRepository.findByName(request.getName()).isPresent()) {
-            throw  new EntityAlreadyExistsException("Stock not found with name : " + request.getName());
+            throw  new EntityAlreadyExistsException("Stock already exists with name : " + request.getName());
         }
 
         Stock stock = new Stock();
