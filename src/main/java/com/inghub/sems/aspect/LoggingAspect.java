@@ -29,17 +29,17 @@ public class LoggingAspect {
     }
 
     // Pointcut for controller methods
-    @Before("execution(* com.inghub.sems.contoller.*.*(..))")
+    @Before("execution(* com.inghub.sems.controller.*.*(..))")
     public void logBeforeControllerMethods(JoinPoint joinPoint) {
         log.info("Entering controller method: {} with arguments: {}", joinPoint.getSignature().toShortString(), joinPoint.getArgs());
     }
 
-    @AfterReturning(pointcut = "execution(* com.inghub.sems.contoller.*.*(..))", returning = "result")
+    @AfterReturning(pointcut = "execution(* com.inghub.sems.controller.*.*(..))", returning = "result")
     public void logAfterControllerMethods(JoinPoint joinPoint, Object result) {
         log.info("Exiting controller method: {} with result: {}", joinPoint.getSignature().toShortString(), result);
     }
 
-    @AfterThrowing(pointcut = "execution(* com.inghub.sems.contoller.*.*(..))", throwing = "error")
+    @AfterThrowing(pointcut = "execution(* com.inghub.sems.controller.*.*(..))", throwing = "error")
     public void logAfterThrowingControllerMethods(JoinPoint joinPoint, Throwable error) {
         log.error("Exception in controller method: {} with cause: {}", joinPoint.getSignature().toShortString(), error.getMessage());
     }
