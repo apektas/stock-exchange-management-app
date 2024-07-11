@@ -43,5 +43,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(CustomAuthenticationException.class)
+    public ResponseEntity<GlobalExceptionResponse> handleAuthenticationException(CustomAuthenticationException ex,  WebRequest request) {
+        GlobalExceptionResponse errorResponse = GlobalExceptionResponse.builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .message(ex.getMessage())
+                .details(request.getDescription(false))
+                .build();
+        return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+    }
+
 
 }
